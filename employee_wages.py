@@ -1,3 +1,8 @@
+"""
+Author :- Sunanda Shil
+Date :- 16-12-21
+"""
+
 import random
 import logging
 
@@ -5,17 +10,31 @@ logging.basicConfig(filename="employe_wages.log", filemode="w")
 
 
 class Employee:
+    """
+    created this class for employee
+    """
     is_full_day = 1
     is_part_day = 2
     working_hr = 0
 
     def __init__(self, name, wages_per_hour, company_working_hr, employee_working_hr):
+        """
+        Initializing the attribute
+        :param name:
+        :param wages_per_hour:
+        :param company_working_hr:
+        :param employee_working_hr:
+        """
         self.name = name
         self.wages_per_hour = wages_per_hour
         self.company_working_hr = company_working_hr
         self.employee_working_hr = employee_working_hr
 
     def check_attendence(self):
+        """
+        finding the employee attandence randomly
+        :return:
+        """
         absent = 0
         is_full_time = 1
         is_part_time = 2
@@ -29,6 +48,10 @@ class Employee:
         return attendence_employee
 
     def attendence(self):
+        """
+        checkoing the attandence and finding the working hours of employee
+        :return:
+        """
         attendence_emp = self.check_attendence()
         try:
             if attendence_emp == self.is_full_day:
@@ -42,6 +65,10 @@ class Employee:
             logging.exception("Given range is not proper")
 
     def calculate_daily_wage(self):
+        """
+        In this function calculation process is running
+        :return:
+        """
         total_wages = 0
         day_working_hr = self.attendence()
         while self.employee_working_hr < self.company_working_hr:
