@@ -76,13 +76,13 @@ class Employee:
             value = self.wages_per_hour * day_working_hr * self.working_for_month
             total_wages = total_wages + value
             return total_wages
-    
 
 
 class Company:
     """
     Created this class for company
     """
+    totalwages_by_company = 0
 
     def __init__(self, name):
         """
@@ -121,7 +121,10 @@ class Company:
         calling calculate wages in company class
         :return:
         """
-        print("Total wages", employee.calculate_daily_wage())
+        for employee in self.employee_list:
+            self.totalwages_by_company = self.totalwages_by_company + employee.calculate_daily_wage()
+
+        print(self.totalwages_by_company)
 
 
 def get_company(company_list, company_name):
@@ -146,6 +149,7 @@ if __name__ == "__main__":
 
     try:
         while True:
+
             print("""Your choices:- 
                         1.Add employee
                         2.Display
