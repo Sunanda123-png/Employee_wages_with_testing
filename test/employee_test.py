@@ -5,7 +5,6 @@ from employee_wages import Company
 def test_check_attendence():
     """
     testing the check attandence function
-    :return:
     """
     employee = Employee("sunanda", 20, 14, 10, 5)
     assert (employee.check_attendence() == 2 or employee.check_attendence() == 1 or employee.check_attendence() == 0)
