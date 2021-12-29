@@ -13,17 +13,17 @@ class Employee:
     """
     created this class for employee
     """
-    is_full_day = 1
-    is_part_day = 2
+    IS_FULL_DAY = 1
+    IS_PART_DAY = 2
     working_hr = 0
 
     def __init__(self, name, wages_per_hour, company_working_hr, employee_working_hr, working_for_month):
         """
         Initializing the attribute
-        :param name:
-        :param wages_per_hour:
-        :param company_working_hr:
-        :param employee_working_hr:
+        :param name: name of employee
+        :param wages_per_hour: company given wages per hour
+        :param company_working_hr: working hours of company
+        :param employee_working_hr: working hours of employee
         """
         self.name = name
         self.wages_per_hour = wages_per_hour
@@ -36,13 +36,13 @@ class Employee:
         finding the employee attandence randomly
         :return:
         """
-        absent = 0
-        is_full_time = 1
-        is_part_time = 2
+        ABSENT = 0
+        IS_FULL_TIME = 1
+        IS_PART_TIME = 2
         dictionary = {
-            0: absent,
-            1: is_full_time,
-            2: is_part_time
+            0: ABSENT,
+            1: IS_FULL_TIME,
+            2: IS_PART_TIME
         }
         empcheck = random.randint(0, 2)
         attendence_employee = dictionary.get(empcheck)
@@ -55,9 +55,9 @@ class Employee:
         """
         attendence_emp = self.check_attendence()
         try:
-            if attendence_emp == self.is_full_day:
+            if attendence_emp == self.IS_FULL_DAY:
                 self.working_hr = 8
-            elif attendence_emp == self.is_part_day:
+            elif attendence_emp == self.IS_PART_DAY:
                 self.working_hr = 4
             else:
                 self.working_hr = 0
@@ -87,7 +87,7 @@ class Company:
     def __init__(self, name):
         """
         Initialize the attribute
-        :param name:
+        :param name: name taken from user
         """
         self.employee_list = list()
         self.name = name
@@ -95,7 +95,7 @@ class Company:
     def add_employee(self, employee):
         """
         adding the employee in employee list
-        :param employee:
+        :param employee: as a object
         :return:
         """
         try:
@@ -116,7 +116,7 @@ class Company:
             print("Employee working hour:- ", employee.employee_working_hr)
             print("Working days:- ", employee.working_for_month)
 
-    def Total_Wages(self):
+    def total_Wages(self):
         """
         calling calculate wages in company class
         :return:
@@ -124,22 +124,22 @@ class Company:
         for employee in self.employee_list:
             self.totalwages_by_company = self.totalwages_by_company + employee.calculate_daily_wage()
 
-        print(self.totalwages_by_company)
+        return self.totalwages_by_company
 
 
 def get_company(company_list, company_name):
     """
     checking the company exist or not
-    :param company_list:
-    :param company_name:
+    :param company_list: list for compny
+    :param company_name: name for company
     :return:
     """
     for company in company_list:
         if company.name == company_name:
             return company_list, company
-    c1 = Company(company_name)
-    company_list.append(c1)
-    return company_list, c1
+    companys = Company(company_name)
+    company_list.append(companys)
+    return company_list, companys
 
 
 if __name__ == "__main__":
@@ -158,8 +158,8 @@ if __name__ == "__main__":
             choice = int(input("Enter your choice:-"))
 
             if choice == 1:
-                c3 = input("Enter company name:- ")
-                list_of_company, company = get_company(company_list, c3)
+                companys_name = input("Enter company name:- ")
+                list_of_company, company = get_company(company_list, companys_name)
 
                 name = input("Enter employee name:- ")
                 wages_per_hour = int(input("Enter the wages per hour given by company:- "))
@@ -171,13 +171,13 @@ if __name__ == "__main__":
                 company.add_employee(employee)
 
             elif choice == 2:
-                c3 = input("Enter company name:- ")
-                list_of_company, company = get_company(company_list, c3)
+                companys_name = input("Enter company name:- ")
+                list_of_company, company = get_company(company_list, companys_name)
                 print(company.display())
             elif choice == 3:
-                c3 = input("Enter company name:- ")
-                list_of_company, company = get_company(company_list, c3)
-                print(company.Total_Wages())
+                companys_name = input("Enter company name:- ")
+                list_of_company, company = get_company(company_list, companys_name)
+                print(company.total_Wages())
             else:
                 print("Enter proper choice!!!")
                 break
